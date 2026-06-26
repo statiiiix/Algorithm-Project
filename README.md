@@ -21,7 +21,7 @@ so we map each rating to a cost of `11 - rating`, which keeps every weight betwe
 
 - Dijkstra with a binary heap: Aya and Mariam
 - ALT (A* with landmark heuristics) and PLL (pruned landmark labeling): Ahmad and Layan
-- Bidirectional Dijkstra and a landmark distance oracle: Laila, Ahmed Ismail, and Yehya
+- Bidirectional Dijkstra and a landmark distance oracle: Laila, Ahmed Ismail, Zeina, and Yehya
 - Weighted single-source shortest paths (the Thorup notebook): Jana and Mohamed
 
 ## notebooks
