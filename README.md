@@ -33,6 +33,41 @@ so we map each rating to a cost of `11 - rating`, which keeps every weight betwe
 - `algorithms_project_MandJ_2.ipynb`: weighted single-source shortest paths. It sums the real
   weight along each edge instead of counting hops, and includes a growth curve.
 
+## visual results
+
+Short animations of how each algorithm finds a path, plus the benchmark graphs, live in the
+[`media/`](media) folder. There is more detail in [media/README.md](media/README.md). In every
+clip, **S** (green) is the source, **T** (gold) is the target, grey nodes are unvisited, the
+coloured nodes are the ones that get settled, yellow is the live frontier (the priority queue),
+and the red trail is the final shortest path.
+
+| Dijkstra | ALT (goal-directed) | Bidirectional |
+|---|---|---|
+| ![Dijkstra](media/videos/1_dijkstra.gif) | ![ALT](media/videos/3_alt.gif) | ![Bidirectional](media/videos/5_bidirectional.gif) |
+| expands evenly in all directions | leans toward T, settles fewer nodes | two searches meet in the middle |
+
+| Thorup (buckets) | PLL (hub labels) | Distance oracle |
+|---|---|---|
+| ![Thorup](media/videos/2_thorup.gif) | ![PLL](media/videos/4_pll.gif) | ![Distance oracle](media/videos/6_distance_oracle.gif) |
+| empties one distance level at a time | meets through a shared hub, no search | routes through the best landmark |
+
+### the benchmark
+
+We timed every algorithm on every dataset across sub-graphs of growing size. That gives 30
+plots, one per algorithm-and-dataset pair:
+
+![all 30 plots](media/figures/30_grid_time_vs_size.png)
+
+Then, one plot per dataset puts all six algorithms together so you can compare how fast each one
+grows. The legend shows the fitted growth exponent `b` (around 1 is linear, near 2 is quadratic;
+PLL and the oracle stay flat because their query time barely depends on size).
+
+| | |
+|---|---|
+| ![Bitcoin Alpha](media/figures/growth_bitcoin_alpha.png) | ![Bitcoin OTC](media/figures/growth_bitcoin_otc.png) |
+| ![Advogato](media/figures/growth_advogato.png) | ![Epinions](media/figures/growth_epinions.png) |
+| ![LiveMocha](media/figures/growth_livemocha.png) | |
+
 ## running it
 
 Each notebook expects the dataset files to sit in the same folder. Open one in Jupyter and run
